@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FileVault — Accedi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:       #0a0a0f;
-      --surface:  #111118;
-      --border:   rgba(255,255,255,0.07);
-      --border-h: rgba(255,255,255,0.15);
-      --text:     #e8e6e0;
-      --muted:    #6b6a66;
-      --accent:   #c8a96e;
-      --accent-d: #9a7c45;
-      --error:    #e05c5c;
-      --success:  #5cb88a;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html, body {
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-h: rgba(255, 255, 255, 0.15);
+      --text: #e8e6e0;
+      --muted: #6b6a66;
+      --accent: #d4b04d;
+      --accent-d: #d4b04d;
+      --error: #e05c5c;
+      --success: #5cb88a;
+    }
+
+    html,
+    body {
       height: 100%;
       background: var(--bg);
       color: var(--text);
@@ -33,10 +43,11 @@
     /* Sfondo animato */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200,169,110,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(200,169,110,0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200, 169, 110, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(200, 169, 110, 0.04) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
@@ -107,7 +118,8 @@
     }
 
     .feature-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
@@ -154,14 +166,23 @@
     .tab-btn.active::after {
       content: '';
       position: absolute;
-      bottom: -1px; left: 0; right: 0;
+      bottom: -1px;
+      left: 0;
+      right: 0;
       height: 1px;
       background: var(--accent);
     }
 
     /* Form */
-    .form { display: none; }
-    .form.active { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
 
     .form-title {
       font-family: 'DM Serif Display', serif;
@@ -175,7 +196,11 @@
       margin-bottom: 0.5rem;
     }
 
-    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
 
     .field label {
       font-size: 0.78rem;
@@ -210,7 +235,9 @@
       display: none;
     }
 
-    .field-error.visible { display: block; }
+    .field-error.visible {
+      display: block;
+    }
 
     .btn-primary {
       background: var(--accent);
@@ -227,24 +254,43 @@
       overflow: hidden;
     }
 
-    .btn-primary:hover { background: #d4b87a; }
-    .btn-primary:active { transform: scale(0.98); }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary:hover {
+      background: #d4b87a;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
     .btn-primary .spinner {
       display: none;
-      width: 16px; height: 16px;
-      border: 2px solid rgba(10,10,15,0.3);
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 10, 15, 0.3);
       border-top-color: #0a0a0f;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       margin: 0 auto;
     }
 
-    .btn-primary.loading span { display: none; }
-    .btn-primary.loading .spinner { display: block; }
+    .btn-primary.loading span {
+      display: none;
+    }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-primary.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     .alert {
       padding: 0.75rem 1rem;
@@ -252,17 +298,38 @@
       font-size: 0.85rem;
       display: none;
     }
-    .alert.error { background: rgba(224,92,92,0.1); border: 1px solid rgba(224,92,92,0.3); color: var(--error); display: block; }
-    .alert.success { background: rgba(92,184,138,0.1); border: 1px solid rgba(92,184,138,0.3); color: var(--success); display: block; }
+
+    .alert.error {
+      background: rgba(224, 92, 92, 0.1);
+      border: 1px solid rgba(224, 92, 92, 0.3);
+      color: var(--error);
+      display: block;
+    }
+
+    .alert.success {
+      background: rgba(92, 184, 138, 0.1);
+      border: 1px solid rgba(92, 184, 138, 0.3);
+      color: var(--success);
+      display: block;
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .page { grid-template-columns: 1fr; }
-      .brand-panel { display: none; }
-      .form-panel { padding: 2rem 1.5rem; }
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-panel {
+        display: none;
+      }
+
+      .form-panel {
+        padding: 2rem 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
 
@@ -272,14 +339,23 @@
 
       <div class="brand-tagline">
         <h1>I tuoi file,<br><em>ovunque</em><br>tu sia.</h1>
-        <p>Un fileserver sicuro con autenticazione JWT. Carica, organizza e condividi i tuoi documenti da qualsiasi dispositivo.</p>
+        <p>Un fileserver sicuro con autenticazione JWT. Carica, organizza e condividi i tuoi documenti da qualsiasi
+          dispositivo.</p>
       </div>
 
       <div class="features">
-        <div class="feature"><div class="feature-dot"></div>Autenticazione sicura con JWT</div>
-        <div class="feature"><div class="feature-dot"></div>Cartelle e organizzazione file</div>
-        <div class="feature"><div class="feature-dot"></div>Upload, download e gestione completa</div>
-        <div class="feature"><div class="feature-dot"></div>Architettura a due server separati</div>
+        <div class="feature">
+          <div class="feature-dot"></div>Autenticazione sicura con JWT
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>Cartelle e organizzazione file
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>Upload, download e gestione completa
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>Architettura a due server separati
+        </div>
       </div>
     </div>
 
@@ -357,4 +433,5 @@
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
 </body>
+
 </html>
