@@ -102,7 +102,7 @@ Tutte le route richiedono l'header: `Authorization: Bearer <token>`
 | Metodo | Endpoint | Descrizione |
 |--------|----------|-------------|
 | `GET` | `/api/files/:cartella_id?` | Lista file  |
-| `POST` | `/api/files/upload` | Carica un file (FormData) |
+| `POST` | `/api/files/upload` | Carica un file (Base64) |
 | `GET` | `/api/files/:id/download` | Scarica un file |
 | `PUT` | `/api/files/:id/sposta` | Sposta file in altra cartella |
 | `DELETE` | `/api/files/:id` | Elimina un file |
